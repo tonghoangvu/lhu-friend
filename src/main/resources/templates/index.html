@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LHU friend</title>
+</head>
+<body>
+    <h2>Home page</h2>
+    <a th:href="@{/oauth2/authorization/google}">Login with Google</a>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <a href="/account">Account</a>
+</body>
+</html>
