@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Your account</title>
+    <title>Application error</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -12,8 +12,9 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <h2>Account page</h2>
-    <p th:text="${email}"></p>
+    <h2>Application Error</h2>
+    <p>Code: <span th:text="${code}"></span></p>
+    <p>Message: <span th:text="${message}"></span></p>
     <a href="/">Go home</a>
 </body>
 </html>

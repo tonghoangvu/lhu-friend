@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,11 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     @Override
                     public void onAuthenticationSuccess(
                             HttpServletRequest request, HttpServletResponse response,
-                            FilterChain chain, Authentication authentication)
+                            Authentication authentication)
                             throws IOException, ServletException {
                         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
                         System.out.println(oidcUser.getEmail());
-                        super.onAuthenticationSuccess(request, response, chain, authentication);
+                        super.onAuthenticationSuccess(request, response, authentication);
                     }
                 })
                 .and()
