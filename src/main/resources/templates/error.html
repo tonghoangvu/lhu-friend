@@ -12,14 +12,14 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <div th:if="${status} == 404">
+    <th:block th:if="${status} == 404">
         <h2>Not found</h2>
         <p>Oops! That page doesn't exist</p>
-    </div>
-    <div th:unless="${status} == 404">
+    </th:block>
+    <th:block th:unless="${status} == 404">
         <h2>Internal Server Error</h2>
         <p>Oops! Something went wrong</p>
-    </div>
+    </th:block>
     <a href="/">Go home</a>
 </body>
 </html>
