@@ -34,9 +34,9 @@ public class UserService {
         return user;
     }
 
-    public void updateUserInfo(String email, UserUpdateForm userUpdateForm) {
+    public User updateUserInfo(String email, UserUpdateForm userUpdateForm) {
         User user = getUser(email);
         user.setFullName(userUpdateForm.getFullName());
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 }

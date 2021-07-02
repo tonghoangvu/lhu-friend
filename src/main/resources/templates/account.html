@@ -21,6 +21,7 @@
                name="fullName" th:value="${userInfo.fullName}">
         <button type="submit">Update account</button>
     </form>
+    <p style="color: red" th:text="${error}"></p>
     <a href="/">Go home</a>
 </body>
 </html>

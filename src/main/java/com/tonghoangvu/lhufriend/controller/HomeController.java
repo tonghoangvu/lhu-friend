@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
@@ -32,9 +32,19 @@ public class HomeController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/account")
-    public RedirectView updateInfo(@Valid UserUpdateForm userUpdateForm) {
+    public String updateInfo(
+            @Valid UserUpdateForm userUpdateForm,
+            BindingResult bindingResult,
+            Model model) {
         String email = authenticationService.getEmail();
-        userService.updateUserInfo(email, userUpdateForm);
-        return new RedirectView("/account");
+        User user;
+        if (bindingResult.hasErrors()) {
+            String errorMessage = bindingResult.getAllErrors().get(0).getDefaultMessage();
+            model.addAttribute("error", errorMessage);
+            user = userService.getUser(email);
+        } else
+            user = userService.updateUserInfo(email, userUpdateForm);
+        model.addAttribute("userInfo", new UserInfo(user));
+        return "account";
     }
 }
