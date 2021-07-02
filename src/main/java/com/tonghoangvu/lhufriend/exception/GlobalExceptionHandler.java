@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -28,6 +29,15 @@ public class GlobalExceptionHandler {
         modelAndView.addObject("code", e.getCode());
         modelAndView.addObject("message", e.getMessage());
         return modelAndView;
+    }
+
+    @ExceptionHandler(BindException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected String handleBindException(BindException e, Model model) {
+        String errorMessage = e.getAllErrors().get(0).getDefaultMessage();
+        model.addAttribute("code", ErrorCode.BAD_REQUEST);
+        model.addAttribute("message", errorMessage);
+        return "custom-error";
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)

@@ -14,9 +14,13 @@
 <body>
     <h2>Account page</h2>
     <p th:text="${userInfo.email}"></p>
-    <p th:text="${userInfo.fullName}"></p>
     <p th:text="${userInfo.locale}"></p>
     <img th:src="@{${userInfo.PictureUrl}}">
+    <form method="post" th:action="@{/account}">
+        <input type="text" placeholder="Full name"
+               name="fullName" th:value="${userInfo.fullName}">
+        <button type="submit">Update account</button>
+    </form>
     <a href="/">Go home</a>
 </body>
 </html>
