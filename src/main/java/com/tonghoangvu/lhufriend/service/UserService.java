@@ -16,11 +16,15 @@ public class UserService {
     }
 
     public void signupOidcUser(OidcUser oidcUser) {
-        User user = new User();
+        var user = new User();
         user.setEmail(oidcUser.getEmail());
         user.setFullName(oidcUser.getFullName());
         user.setPictureUrl(oidcUser.getPicture());
         user.setLocale(oidcUser.getLocale());
         userRepository.save(user);
+    }
+
+    public User getUser(String email) {
+        return userRepository.findByEmail(email);
     }
 }

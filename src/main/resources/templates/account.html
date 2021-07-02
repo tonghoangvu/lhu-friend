@@ -13,7 +13,10 @@
 </head>
 <body>
     <h2>Account page</h2>
-    <p th:text="${email}"></p>
+    <p th:text="${userInfo.email}"></p>
+    <p th:text="${userInfo.fullName}"></p>
+    <p th:text="${userInfo.locale}"></p>
+    <img th:src="@{${userInfo.PictureUrl}}">
     <a href="/">Go home</a>
 </body>
 </html>
