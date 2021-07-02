@@ -1,5 +1,7 @@
 package com.tonghoangvu.lhufriend.config;
 
+import com.tonghoangvu.lhufriend.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,7 +17,10 @@ import java.io.IOException;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private final UserService userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             Authentication authentication)
                             throws IOException, ServletException {
                         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
-                        System.out.println(oidcUser.getEmail());
+                        if (!userService.isEmailExists(oidcUser.getEmail()))
+                            userService.signupOidcUser(oidcUser);
                         super.onAuthenticationSuccess(request, response, authentication);
                     }
                 })
