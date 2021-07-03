@@ -15,7 +15,9 @@
     <h2>Account page</h2>
     <p th:text="${userInfo.email}"></p>
     <p th:text="${userInfo.locale}"></p>
-    <img th:src="@{${userInfo.PictureUrl}}">
+    <p th:text="${userInfo.createdAt}"></p>
+    <p th:text="${userInfo.updatedAt}"></p>
+    <img th:src="@{${userInfo.PictureUrl}}" src="">
     <form method="post" th:action="@{/account}">
         <input type="text" placeholder="Full name"
                name="fullName" th:value="${userInfo.fullName}">
