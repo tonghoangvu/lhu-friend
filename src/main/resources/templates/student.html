@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        img {
+            width: 50px;
+        }
+
+        table, tr, th, td {
+            border: 1px solid gray;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student page</h2>
+    <span th:text="${page}"></span>
+    <span>of</span>
+    <span th:text="${totalPage}"></span>
+    <a th:href="@{/student(page=${page - 1 < 0 ? 0 : page - 1})}">Prev</a>
+    <a th:href="@{/student(page=${page + 1 > totalPage ? totalPage : page + 1})}">Next</a>
+    <table>
+        <thead>
+            <th>Student id</th>
+            <th>Full name</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th>Place of birth</th>
+            <th>Ethnic</th>
+            <th>Nationality</th>
+            <th>Class</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Group name</th>
+            <th>Facebook</th>
+            <th>Image</th>
+            <th>Avatar</th>
+        </thead>
+        <tbody>
+            <tr th:if="${students.empty}">
+                <td colspan="2">No students found</td>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.studentId}"></td>
+                <td th:text="${student.fullName}"></td>
+                <td th:text="${student.birthday}"></td>
+                <td th:text="${student.gender}"></td>
+                <td th:text="${student.placeOfBirth}"></td>
+                <td th:text="${student.ethnic}"></td>
+                <td th:text="${student.nationality}"></td>
+                <td th:text="${student.classId}"></td>
+                <td th:text="${student.userName}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.phone}"></td>
+                <td th:text="${student.groupName}"></td>
+                <td th:text="${student.facebook}"></td>
+                <td>
+                    <img th:src="@{${student.image}}" src="">
+                </td>
+                <td>
+                    <img th:src="@{${student.avatar}}" src="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/">Go home</a>
+</body>
+</html>
