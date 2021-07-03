@@ -1,10 +1,10 @@
 package com.tonghoangvu.lhufriend.service;
 
-import com.tonghoangvu.lhufriend.UserRepository;
 import com.tonghoangvu.lhufriend.entity.User;
 import com.tonghoangvu.lhufriend.exception.ErrorCode;
 import com.tonghoangvu.lhufriend.exception.ViewException;
 import com.tonghoangvu.lhufriend.model.UserUpdateForm;
+import com.tonghoangvu.lhufriend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.tonghoangvu.lhufriend;
+package com.tonghoangvu.lhufriend.repository;
 
 import com.tonghoangvu.lhufriend.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
