@@ -17,7 +17,7 @@
     <p th:text="${userInfo.locale}"></p>
     <p th:text="${userInfo.createdAt}"></p>
     <p th:text="${userInfo.updatedAt}"></p>
-    <img th:src="@{${userInfo.PictureUrl}}" src="">
+    <img th:src="@{${userInfo.pictureUrl}}" src="">
     <form method="post" th:action="@{/account}">
         <input type="text" placeholder="Full name"
                name="fullName" th:value="${userInfo.fullName}">
